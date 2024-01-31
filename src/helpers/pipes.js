@@ -33,3 +33,5 @@ const uploadFiles = asyncPipe(
 );
 uploadFiles({ user, folder, files }).then(log);
 */
+
+export { pipe, asyncPipe };

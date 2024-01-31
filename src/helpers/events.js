@@ -1,14 +1,14 @@
-//events - a basic (publish subscribe) pattern
+// events - a basic (publish subscribe) pattern
 
 export const events = {
   events: {},
-  on: function (eventName, fn) {
+  on(eventName, fn) {
     this.events[eventName] = this.events[eventName] || [];
     this.events[eventName].push(fn);
   },
-  off: function (eventName, fn) {
+  off(eventName, fn) {
     if (this.events[eventName]) {
-      for (var i = 0; i < this.events[eventName].length; i++) {
+      for (let i = 0; i < this.events[eventName].length; i++) {
         if (this.events[eventName][i] === fn) {
           this.events[eventName].splice(i, 1);
           break;
@@ -16,9 +16,9 @@ export const events = {
       }
     }
   },
-  emit: function (eventName, data) {
+  emit(eventName, data) {
     if (this.events[eventName]) {
-      this.events[eventName].forEach(function (fn) {
+      this.events[eventName].forEach((fn) => {
         fn(data);
       });
     }
