@@ -55,7 +55,7 @@ export default class GameBoard {
         return false;
       });
     }
-    return this.areAllShipsSunk();
+    return cellValue;
   }
 
   areAllShipsSunk() {

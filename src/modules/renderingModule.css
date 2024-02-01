@@ -21,3 +21,11 @@
   font-size: 0.8em;
   cursor: pointer;
 }
+
+#computer-player-container .cell:hover {
+  background-color: blue;
+}
+
+.clicked-cell {
+  cursor: default;
+}
