@@ -13,4 +13,9 @@ test("place ship on gameboard", () => {
   expect(
     gameBoard.placeShip(gameBoard.ships.destroyer, { row: 4, column: 9 }),
   ).toEqual(Error("Ship length exceeds board column length."));
+
+  gameBoard.placeShip(gameBoard.ships.destroyer, { row: 5, column: 5 });
+  expect(
+    gameBoard.placeShip(gameBoard.ships.submarine, { row: 5, column: 7 }),
+  ).toEqual(Error("A ship is already placed at those coordinates."));
 });

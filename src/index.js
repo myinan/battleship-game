@@ -1,7 +1,11 @@
 import "./style.css";
 import GameBoard from "./modules/GameBoard";
 
-const myBoard = new GameBoard();
+const gameBoard = new GameBoard();
+gameBoard.placeShip(gameBoard.ships.patrolBoat, { row: 3, column: 4 });
+gameBoard.receiveAttack({ row: 3, column: 4 });
+gameBoard.receiveAttack({ row: 3, column: 5 });
+console.log(gameBoard.ships.patrolBoat.isSunk());
 
-console.log(myBoard.placeShip(myBoard.ships.carrier, { row: 3, column: 5 }));
-console.log(myBoard.board);
+gameBoard.receiveAttack({ row: 3, column: 6 });
+console.log(gameBoard.board);
