@@ -11,7 +11,7 @@ export default class GameBoard {
       battleship: new Ship("battleship", 4),
       destroyer: new Ship("destroyer", 3),
       submarine: new Ship("submarine", 3),
-      patrolBoat: new Ship("patrol boat", 2),
+      patrolBoat: new Ship("patrolBoat", 2),
     };
   }
 
