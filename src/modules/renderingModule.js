@@ -38,12 +38,28 @@ function emitHumanAttackCoor(e) {
   }
 }
 
+// Helper function for cell rendering
+function renderCell(cellValue, target) {
+  const targetCell = target;
+
+  // if (cellValue === "X") { Do nothing }
+
+  if (cellValue === "0") {
+    targetCell.style.backgroundColor = "blue";
+    targetCell.innerText = "X";
+  }
+
+  // This means a ship got hit
+  if (cellValue !== "X" && cellValue !== "0") {
+    targetCell.style.backgroundColor = "red";
+    targetCell.innerText = "X";
+  }
+}
+
 function renderAfterHumanPlay(data) {
   const { event, cellValue, areAllShipsSunk } = data;
-  if (cellValue === "0") {
-    event.target.style.backgroundColor = "blue";
-    event.target.innerText = "X";
-  }
+  renderCell(cellValue, event.target);
+  events.emit("areAllShipsSunk", areAllShipsSunk);
 }
 
 function renderAfterComputerPlay(data) {
@@ -53,11 +69,14 @@ function renderAfterComputerPlay(data) {
     const cellToRenderOn = humanBoard.querySelector(
       `div[data-coor='${Object.values(hitCoor).join("")}']`,
     );
-    if (cellValue === "0") {
-      cellToRenderOn.style.backgroundColor = "blue";
-      cellToRenderOn.innerText = "X";
-    }
+
+    renderCell(cellValue, cellToRenderOn);
+    events.emit("areAllShipsSunk", areAllShipsSunk);
   }
+}
+
+function announceWinner(data) {
+  if (data) console.log("Win!");
 }
 
 // Emit attack coordinates when human clicks on a cell on Computer's "board"
@@ -69,6 +88,9 @@ events.on("humanAttacked", renderAfterHumanPlay);
 // Render accordingly after computer play
 events.on("computerAttacked", renderAfterComputerPlay);
 
+// Check if any of the players all ships have been sunk
+events.on("areAllShipsSunk", announceWinner);
+
 // User clicks on a block on computer's board +
 // emit coor +
 // play the game and emit the cell value +
@@ -76,4 +98,4 @@ events.on("computerAttacked", renderAfterComputerPlay);
 // now computer plays ++
 // do rendering according to computer's play ++
 // now let player make another move on computer's board ++
-// repeat until one of the players loses all of their ships (--
+// repeat until one of the players loses all of their ships ++
