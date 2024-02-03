@@ -1,6 +1,11 @@
 import { events } from "../helpers/events";
 import { humanPlayer, computerPlayer } from "./createPlayer";
 
+function placeComputerShips() {
+  computerPlayer.placeShips();
+  console.log(computerPlayer.board.board);
+}
+
 function handleHumanAttack(data) {
   let cellValue;
   try {
@@ -33,54 +38,12 @@ function handleComputerAttack(data) {
   }, 100);
 }
 
+// On page load, computer places it's ships
+events.on("pageLoaded", placeComputerShips);
+
 // Get the coor data from human click, play the game, emit the result
 events.on("humanClicked", handleHumanAttack);
 
 // Listen/Wait for human play, then play as computer,
 // after that, emit the data of computer's play
 events.on("humanAttacked", handleComputerAttack);
-
-/* Driver Script */
-humanPlayer.board.placeShip(humanPlayer.board.ships.carrier, {
-  row: 0,
-  column: 0,
-});
-humanPlayer.board.placeShip(humanPlayer.board.ships.battleship, {
-  row: 1,
-  column: 0,
-});
-humanPlayer.board.placeShip(humanPlayer.board.ships.destroyer, {
-  row: 2,
-  column: 0,
-});
-humanPlayer.board.placeShip(humanPlayer.board.ships.submarine, {
-  row: 3,
-  column: 0,
-});
-humanPlayer.board.placeShip(humanPlayer.board.ships.patrolBoat, {
-  row: 4,
-  column: 0,
-});
-
-computerPlayer.board.placeShip(computerPlayer.board.ships.carrier, {
-  row: 0,
-  column: 0,
-});
-computerPlayer.board.placeShip(computerPlayer.board.ships.battleship, {
-  row: 1,
-  column: 0,
-});
-computerPlayer.board.placeShip(computerPlayer.board.ships.destroyer, {
-  row: 2,
-  column: 0,
-});
-computerPlayer.board.placeShip(computerPlayer.board.ships.submarine, {
-  row: 3,
-  column: 0,
-});
-computerPlayer.board.placeShip(computerPlayer.board.ships.patrolBoat, {
-  row: 4,
-  column: 0,
-});
-
-console.log(computerPlayer.board.board);
