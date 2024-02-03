@@ -59,7 +59,7 @@ function renderCell(cellValue, target) {
 function renderAfterHumanPlay(data) {
   const { event, cellValue, areAllShipsSunk } = data;
   renderCell(cellValue, event.target);
-  events.emit("areAllShipsSunk", areAllShipsSunk);
+  events.emit("areAllShipsSunk", { humanWon: areAllShipsSunk });
 }
 
 function renderAfterComputerPlay(data) {
@@ -71,12 +71,13 @@ function renderAfterComputerPlay(data) {
     );
 
     renderCell(cellValue, cellToRenderOn);
-    events.emit("areAllShipsSunk", areAllShipsSunk);
+    events.emit("areAllShipsSunk", { computerWon: areAllShipsSunk });
   }
 }
 
 function announceWinner(data) {
-  if (data) console.log("Win!");
+  if (data.humanWon) console.log("You have won!");
+  if (data.computerWon) console.log("Computer wins!");
 }
 
 // Emit attack coordinates when human clicks on a cell on Computer's "board"
@@ -89,6 +90,7 @@ events.on("humanAttacked", renderAfterHumanPlay);
 events.on("computerAttacked", renderAfterComputerPlay);
 
 // Check if any of the players all ships have been sunk
+// if true, render winner
 events.on("areAllShipsSunk", announceWinner);
 
 // User clicks on a block on computer's board +
