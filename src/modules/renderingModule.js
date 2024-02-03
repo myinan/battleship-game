@@ -80,6 +80,11 @@ function announceWinner(data) {
   if (data.computerWon) console.log("Computer wins!");
 }
 
+// Emit to signal DOMContentLoad
+document.addEventListener("DOMContentLoaded", () => {
+  events.emit("pageLoaded", {});
+});
+
 // Emit attack coordinates when human clicks on a cell on Computer's "board"
 computerBoard.addEventListener("click", emitHumanAttackCoor);
 
@@ -92,12 +97,3 @@ events.on("computerAttacked", renderAfterComputerPlay);
 // Check if any of the players all ships have been sunk
 // if true, render winner
 events.on("areAllShipsSunk", announceWinner);
-
-// User clicks on a block on computer's board +
-// emit coor +
-// play the game and emit the cell value +
-// do rendering according to cell value +
-// now computer plays ++
-// do rendering according to computer's play ++
-// now let player make another move on computer's board ++
-// repeat until one of the players loses all of their ships ++
