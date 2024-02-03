@@ -22,6 +22,7 @@ function handleHumanAttack(data) {
 
 function handleComputerAttack(data) {
   let compAttackData;
+
   // If user clicked on an already attacked cell, don't make a play
   if (data.cellValue === "X") return;
 
@@ -36,7 +37,7 @@ function handleComputerAttack(data) {
 events.on("humanClicked", handleHumanAttack);
 
 // Listen/Wait for human play, then play as computer,
-// after that, emit the data of computer's play for rendering
+// after that, emit the data of computer's play
 events.on("humanAttacked", handleComputerAttack);
 
 /* Driver Script */
