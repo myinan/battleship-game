@@ -13,6 +13,31 @@ function createPlayer() {
 const humanPlayer = createPlayer();
 const computerPlayer = createPlayer();
 
+// Function for computerPlayer to place it's ships
+computerPlayer.placeShips = function placeShips() {
+  const shipsArr = Object.values(computerPlayer.board.ships);
+  shipsArr.forEach((ship) => {
+    let startCoor;
+    let shipPlaced = false;
+
+    while (!shipPlaced) {
+      try {
+        const num1 = Math.floor(Math.random() * 10);
+        const num2 = Math.floor(Math.random() * 10);
+        startCoor = { row: num1, column: num2 };
+
+        // Attempt to place the ship
+        computerPlayer.board.placeShip(ship, startCoor);
+
+        // If no error occurred, set shipPlaced to true
+        shipPlaced = true;
+      } catch (err) {
+        // Silently catch the error
+      }
+    }
+  });
+};
+
 // Create array for computerPlayer to keep track of attacked coordinates
 computerPlayer.attackedCoords = [];
 
