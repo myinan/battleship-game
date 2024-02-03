@@ -11,7 +11,12 @@ function handleHumanAttack(data) {
   } catch (err) {
     cellValue = "X";
   } finally {
-    events.emit("humanAttacked", { event: data.eventData, cellValue });
+    const dataObject = {
+      event: data.eventData,
+      cellValue,
+      areAllShipsSunk: computerPlayer.board.areAllShipsSunk(),
+    };
+    events.emit("humanAttacked", dataObject);
   }
 }
 
@@ -22,7 +27,8 @@ function handleComputerAttack(data) {
 
   setTimeout(() => {
     compAttackData = computerPlayer.play(humanPlayer.board);
-    events.emit("computerAttacked", compAttackData);
+    const areAllShipsSunk = computerPlayer.board.areAllShipsSunk();
+    events.emit("computerAttacked", { compAttackData, areAllShipsSunk });
   }, 100);
 }
 

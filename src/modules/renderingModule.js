@@ -39,7 +39,7 @@ function emitHumanAttackCoor(e) {
 }
 
 function renderAfterHumanPlay(data) {
-  const { event, cellValue } = data;
+  const { event, cellValue, areAllShipsSunk } = data;
   if (cellValue === "0") {
     event.target.style.backgroundColor = "blue";
     event.target.innerText = "X";
@@ -47,8 +47,9 @@ function renderAfterHumanPlay(data) {
 }
 
 function renderAfterComputerPlay(data) {
-  if (data) {
-    const { hitCoor, cellValue } = data;
+  const { compAttackData, areAllShipsSunk } = data;
+  if (compAttackData) {
+    const { hitCoor, cellValue } = compAttackData;
     const cellToRenderOn = humanBoard.querySelector(
       `div[data-coor='${Object.values(hitCoor).join("")}']`,
     );
