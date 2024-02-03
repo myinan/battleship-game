@@ -27,14 +27,59 @@ function handleComputerAttack(data) {
 
   setTimeout(() => {
     compAttackData = computerPlayer.play(humanPlayer.board);
-    const areAllShipsSunk = computerPlayer.board.areAllShipsSunk();
+    const areAllShipsSunk = humanPlayer.board.areAllShipsSunk();
     events.emit("computerAttacked", { compAttackData, areAllShipsSunk });
   }, 100);
 }
 
-// Get the coor data of human attack, play the game, emit the result
+// Get the coor data from human click, play the game, emit the result
 events.on("humanClicked", handleHumanAttack);
 
 // Listen/Wait for human play, then play as computer,
 // after that, emit the data of computer's play for rendering
 events.on("humanAttacked", handleComputerAttack);
+
+/* Driver Script */
+humanPlayer.board.placeShip(humanPlayer.board.ships.carrier, {
+  row: 0,
+  column: 0,
+});
+humanPlayer.board.placeShip(humanPlayer.board.ships.battleship, {
+  row: 1,
+  column: 0,
+});
+humanPlayer.board.placeShip(humanPlayer.board.ships.destroyer, {
+  row: 2,
+  column: 0,
+});
+humanPlayer.board.placeShip(humanPlayer.board.ships.submarine, {
+  row: 3,
+  column: 0,
+});
+humanPlayer.board.placeShip(humanPlayer.board.ships.patrolBoat, {
+  row: 4,
+  column: 0,
+});
+
+computerPlayer.board.placeShip(computerPlayer.board.ships.carrier, {
+  row: 0,
+  column: 0,
+});
+computerPlayer.board.placeShip(computerPlayer.board.ships.battleship, {
+  row: 1,
+  column: 0,
+});
+computerPlayer.board.placeShip(computerPlayer.board.ships.destroyer, {
+  row: 2,
+  column: 0,
+});
+computerPlayer.board.placeShip(computerPlayer.board.ships.submarine, {
+  row: 3,
+  column: 0,
+});
+computerPlayer.board.placeShip(computerPlayer.board.ships.patrolBoat, {
+  row: 4,
+  column: 0,
+});
+
+console.log(computerPlayer.board.board);
