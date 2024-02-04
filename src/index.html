@@ -6,14 +6,23 @@
   <title>Battleship</title>
 </head>
 <body>
+  <div class="overlay"></div>
+  <div class="ship-placer-container">
+    <div class="ship-placer">
+      <h2>Welcome to <i>Battleship</i></h2>
+      <p>Place your <i>Carrier</i></p>
+      <div class="game-board" style="--cell-size: 30px;"></div>
+    </div>
+  </div>
+
   <h1>Battleship</h1>
   <div class="main-container">
     <div id="human-player-container" class="player-container">
       <div class="game-board"></div>
     </div>
-  <div id="computer-player-container" class="player-container">
-    <div class="game-board"></div>
-  </div>
+    <div id="computer-player-container" class="player-container">
+      <div class="game-board"></div>
+    </div>
   </div>
 </body>
 </html>
