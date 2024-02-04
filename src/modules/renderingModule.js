@@ -2,7 +2,8 @@ import "./renderingModule.css";
 import { events } from "../helpers/events";
 import "./gameLoop";
 
-// Get references for both gameboards
+// Get references for all(3) gameboards, also
+// seperate references for computerBoard and humanBoard
 const gameBoards = document.querySelectorAll(".game-board");
 const computerBoard = document.querySelector(
   "#computer-player-container .game-board",
@@ -11,7 +12,7 @@ const humanBoard = document.querySelector(
   "#human-player-container .game-board",
 );
 
-// Render 10x10 "gameboards" for both the human and the computer
+// Render 10x10 "gameboards"
 gameBoards.forEach((gameBoard) => {
   for (let i = 0; i < 10; i += 1) {
     for (let j = 0; j < 10; j += 1) {
@@ -23,7 +24,7 @@ gameBoards.forEach((gameBoard) => {
   }
 });
 
-// Emits both coordinate and event data on human click
+// Emits both coordinate and event data on human click on computerBoard
 let canRegisterClick = true;
 function emitHumanAttackCoor(e) {
   if (canRegisterClick) {
