@@ -3,7 +3,6 @@ import { humanPlayer, computerPlayer } from "./createPlayer";
 
 function placeComputerShips() {
   computerPlayer.placeShips();
-  console.log(computerPlayer.board.board);
 }
 
 function handleHumanAttack(data) {
