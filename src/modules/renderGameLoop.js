@@ -1,8 +1,9 @@
-import "./renderingModule.css";
+import "./renderGameLoop.css";
 import { events } from "../helpers/events";
 import "./gameLoop";
+import "./renderWelcome";
 
-// Get references for all(3) gameboards, also
+// Get a reference for all(3) gameboards, also
 // seperate references for computerBoard and humanBoard
 const gameBoards = document.querySelectorAll(".game-board");
 const computerBoard = document.querySelector(

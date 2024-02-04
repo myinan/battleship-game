@@ -1,0 +1,51 @@
+.overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.6;
+}
+
+.ship-placer-container {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship-placer {
+  height: max(40%, 500px);
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 1vw 2vw;
+}
+
+.ship-placer .game-board {
+  --cell-size: 30px;
+  margin: auto;
+}
+
+.ship-placer .game-board .cell {
+  --cell-size: 30px;
+}
+
+.hidden {
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  position: absolute !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+}

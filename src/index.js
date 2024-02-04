@@ -1,2 +1,2 @@
 import "./style.css";
-import "./modules/renderingModule";
+import "./modules/renderGameLoop";

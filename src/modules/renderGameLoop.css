@@ -1,0 +1,27 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, var(--cell-size, 40px));
+  grid-template-rows: repeat(10, var(--cell-size, 40px));
+}
+
+.cell {
+  width: var(--cell-size, 40px);
+  height: var(--cell-size, 40px);
+  border: 1px solid #000;
+  background-color: #add8e6; /* Light Blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+#computer-player-container .cell:hover {
+  background-color: green;
+}
