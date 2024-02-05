@@ -41,10 +41,39 @@
   --cell-size: 30px;
 }
 
-.hovered {
+.hovered-carrier {
   position: relative;
   background-color: black;
   pointer-events: none;
+  width: 150px;
+}
+
+.hovered-battleship {
+  position: relative;
+  background-color: black;
+  pointer-events: none;
+  width: 120px;
+}
+
+.hovered-destroyer {
+  position: relative;
+  background-color: black;
+  pointer-events: none;
+  width: 90px;
+}
+
+.hovered-submarine {
+  position: relative;
+  background-color: black;
+  pointer-events: none;
+  width: 90px;
+}
+
+.hovered-patrolBoat {
+  position: relative;
+  background-color: black;
+  pointer-events: none;
+  width: 60px;
 }
 
 .hidden {

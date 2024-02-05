@@ -26,6 +26,7 @@ function announceCurShip() {
 
 let prevDataCoor = null; // Initialize previous data-coor value
 function addHoverEffect(e) {
+  const curShipName = shipsNotYetPlaced[0].name;
   const event = e;
   const classListArr = Array.from(event.target.classList);
 
@@ -35,7 +36,7 @@ function addHoverEffect(e) {
     // Check if data-coor is different from the previous value
     if (currentDataCoor !== prevDataCoor) {
       // Add class "hovered" on hovered cell
-      event.target.classList.add("hovered");
+      event.target.classList.add(`hovered-${curShipName}`);
 
       // If previous cell exists, remove the "hovered" class on it
       if (prevDataCoor !== null) {
@@ -43,7 +44,7 @@ function addHoverEffect(e) {
           `.ship-placer .game-board div[data-coor='${prevDataCoor}`,
         );
 
-        prevCell.classList.remove("hovered");
+        prevCell.classList.remove(`hovered-${curShipName}`);
       }
 
       // Update the previous data-coor value
@@ -53,7 +54,10 @@ function addHoverEffect(e) {
 }
 
 function clickToPlaceShip() {
-  const cell = document.querySelector(".ship-placer .game-board .hovered");
+  const curShipName = shipsNotYetPlaced[0].name;
+  const cell = document.querySelector(
+    `.ship-placer .game-board .hovered-${curShipName}`,
+  );
   const data = {
     ship: shipsNotYetPlaced[0],
     coor: cell.getAttribute("data-coor").split(""),
@@ -133,6 +137,7 @@ function removeWelcome() {
 document.addEventListener("DOMContentLoaded", () => {
   events.emit("pageLoaded", {});
 });
+
 document.addEventListener("DOMContentLoaded", announceCurShip);
 placeShipsBoard.addEventListener("mouseover", addHoverEffect);
 placeShipsBoard.addEventListener("click", clickToPlaceShip);
