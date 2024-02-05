@@ -52,7 +52,7 @@ function addHoverEffect(e) {
   }
 }
 
-function placeShip() {
+function clickToPlaceShip() {
   const cell = document.querySelector(".ship-placer .game-board .hovered");
   const data = {
     ship: shipsNotYetPlaced[0],
@@ -62,14 +62,63 @@ function placeShip() {
   events.emit("humanClickedToPlace", data);
 }
 
+// Helper function for renderResult()
+function getReferencesToCells(firstCell, length) {
+  const startCell = firstCell;
+  let nextCells;
+
+  // Ensure startCell is not null before proceeding
+  if (startCell) {
+    nextCells = [startCell]; // Include the starting cell
+
+    // Loop to get the next cells
+    for (let i = 0; i < length - 1; i += 1) {
+      const nextCell = nextCells[nextCells.length - 1].nextElementSibling;
+
+      // Check if there is a next cell
+      if (nextCell) {
+        nextCells.push(nextCell);
+      } else {
+        // Break the loop if there are no more cells
+        break;
+      }
+    }
+  }
+  return nextCells;
+}
+
+// Helper function for renderResult()
+function renderOnBoard(data, reference) {
+  const startCell = document.querySelector(
+    `${reference} .game-board div[data-coor='${data.coor.join("")}`,
+  );
+  const curShipLength = shipsNotYetPlaced[0].length;
+  const cellsArr = getReferencesToCells(startCell, curShipLength);
+  cellsArr.forEach((cell) => {
+    const cellRef = cell;
+    cellRef.style.backgroundColor = "green";
+  });
+}
+
 function renderResult(data) {
+  // If the ship was not placed, return
   if (data instanceof Error) {
     console.log(data);
     return;
   }
+
+  // Render the placed ship coordinates on placing board
+  renderOnBoard(data, ".ship-placer");
+
+  // Render the placed ship coordinates on main human board
+  renderOnBoard(data, "#human-player-container");
+
+  // Move the placed ship to arr for placed ships, and announce the current ship to place
   placedShips.push(shipsNotYetPlaced[0]);
   shipsNotYetPlaced.shift();
   announceCurShip();
+
+  // After all ships are placed, emit "AllShipsArePlaced" event
   if (shipsNotYetPlaced.length === 0) events.emit("AllShipsArePlaced", {});
 }
 
@@ -80,8 +129,12 @@ function removeWelcome() {
   shipPlacerContainer.classList.add("hidden");
 }
 
+// Emit to signal DOMContentLoad
+document.addEventListener("DOMContentLoaded", () => {
+  events.emit("pageLoaded", {});
+});
 document.addEventListener("DOMContentLoaded", announceCurShip);
 placeShipsBoard.addEventListener("mouseover", addHoverEffect);
-placeShipsBoard.addEventListener("click", placeShip);
+placeShipsBoard.addEventListener("click", clickToPlaceShip);
 events.on("HumanPlaceResult", renderResult);
 events.on("AllShipsArePlaced", removeWelcome);

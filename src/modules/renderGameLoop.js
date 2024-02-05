@@ -82,11 +82,6 @@ function announceWinner(data) {
   if (data.computerWon) console.log("Computer wins!");
 }
 
-// Emit to signal DOMContentLoad
-document.addEventListener("DOMContentLoaded", () => {
-  events.emit("pageLoaded", {});
-});
-
 // Emit attack coordinates when human clicks on a cell on Computer's "board"
 computerBoard.addEventListener("click", emitHumanAttackCoor);
 

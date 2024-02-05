@@ -9,7 +9,7 @@ function placeHumanShips(data) {
   try {
     const startCoor = { row: +data.coor[0], column: +data.coor[1] };
     const result = humanPlayer.board.placeShip(data.ship, startCoor);
-    events.emit("HumanPlaceResult", result);
+    events.emit("HumanPlaceResult", { result, coor: data.coor });
   } catch (err) {
     events.emit("HumanPlaceResult", err);
   }
