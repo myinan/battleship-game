@@ -41,6 +41,12 @@
   --cell-size: 30px;
 }
 
+.hovered {
+  position: relative;
+  background-color: black;
+  pointer-events: none;
+}
+
 .hidden {
   top: 0;
   left: 0;

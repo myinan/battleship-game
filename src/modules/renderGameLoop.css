@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: repeat(10, var(--cell-size, 40px));
   grid-template-rows: repeat(10, var(--cell-size, 40px));
+  cursor: pointer;
 }
 
 .cell {
