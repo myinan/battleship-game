@@ -26,3 +26,22 @@
 #computer-player-container .cell:hover {
   background-color: green;
 }
+
+.winner-announcer-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+
+.winner-announcer {
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+}

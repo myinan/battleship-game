@@ -78,8 +78,24 @@ function renderAfterComputerPlay(data) {
 }
 
 function announceWinner(data) {
-  if (data.humanWon) console.log("You have won!");
-  if (data.computerWon) console.log("Computer wins!");
+  const winAnnWrapper = document.querySelector(".winner-announcer-wrapper");
+  const paraf = document.querySelector(".winner-announcer-wrapper p");
+  const restartBtn = document.querySelector(".winner-announcer-wrapper button");
+
+  if (data.humanWon === true || data.computerWon === true) {
+    winAnnWrapper.classList.remove("hidden");
+    restartBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.location.reload();
+    });
+  }
+  if (data.humanWon) {
+    paraf.textContent = "You have won!";
+  }
+
+  if (data.computerWon) {
+    paraf.textContent = "Computer wins!";
+  }
 }
 
 // Emit attack coordinates when human clicks on a cell on Computer's "board"
