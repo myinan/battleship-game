@@ -5,6 +5,16 @@ function placeComputerShips() {
   computerPlayer.placeShips();
 }
 
+function placeHumanShips(data) {
+  try {
+    const startCoor = { row: +data.coor[0], column: +data.coor[1] };
+    const result = humanPlayer.board.placeShip(data.ship, startCoor);
+    events.emit("HumanPlaceResult", result);
+  } catch (err) {
+    events.emit("HumanPlaceResult", err);
+  }
+}
+
 function handleHumanAttack(data) {
   let cellValue;
   try {
@@ -39,6 +49,9 @@ function handleComputerAttack(data) {
 
 // On page load, computer places it's ships
 events.on("pageLoaded", placeComputerShips);
+
+// Human choose coordinates to place their ships
+events.on("humanClickedToPlace", placeHumanShips);
 
 // Get the coor data from human click, play the game, emit the result
 events.on("humanClicked", handleHumanAttack);

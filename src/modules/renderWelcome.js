@@ -1,3 +1,4 @@
+import { events } from "../helpers/events";
 import "./renderWelcome.css";
 
 const placeShipsBoard = document.querySelector(".ship-placer .game-board");
@@ -12,19 +13,15 @@ const shipsNotYetPlaced = [
   { name: "patrolBoat", length: 2 },
 ];
 
-function curShipAnnouncer() {
-  if (shipsNotYetPlaced) {
+function announceCurShip() {
+  if (shipsNotYetPlaced.length !== 0) {
     const capFirstLetter = shipsNotYetPlaced[0].name.charAt(0).toUpperCase();
     const capitalizedName = capFirstLetter.concat(
       "",
       shipsNotYetPlaced[0].name.slice(1),
     );
     paraf.textContent = `${capitalizedName}`;
-    placedShips.push(shipsNotYetPlaced[0]);
-    shipsNotYetPlaced.shift();
-    return true;
   }
-  return false;
 }
 
 let prevDataCoor = null; // Initialize previous data-coor value
@@ -55,11 +52,36 @@ function addHoverEffect(e) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", curShipAnnouncer);
-
-placeShipsBoard.addEventListener("mouseover", addHoverEffect);
-
-placeShipsBoard.addEventListener("click", (e) => {
+function placeShip() {
   const cell = document.querySelector(".ship-placer .game-board .hovered");
-  console.log(cell);
-});
+  const data = {
+    ship: shipsNotYetPlaced[0],
+    coor: cell.getAttribute("data-coor").split(""),
+  };
+
+  events.emit("humanClickedToPlace", data);
+}
+
+function renderResult(data) {
+  if (data instanceof Error) {
+    console.log(data);
+    return;
+  }
+  placedShips.push(shipsNotYetPlaced[0]);
+  shipsNotYetPlaced.shift();
+  announceCurShip();
+  if (shipsNotYetPlaced.length === 0) events.emit("AllShipsArePlaced", {});
+}
+
+function removeWelcome() {
+  const overlay = document.querySelector(".overlay");
+  const shipPlacerContainer = document.querySelector(".ship-placer-container");
+  overlay.classList.add("hidden");
+  shipPlacerContainer.classList.add("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", announceCurShip);
+placeShipsBoard.addEventListener("mouseover", addHoverEffect);
+placeShipsBoard.addEventListener("click", placeShip);
+events.on("HumanPlaceResult", renderResult);
+events.on("AllShipsArePlaced", removeWelcome);
