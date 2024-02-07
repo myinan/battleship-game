@@ -48,7 +48,7 @@ function coordinatesAlreadyAttacked(coords) {
   );
 }
 
-// Variable to keep track of latest attack cell
+// Variable to keep track of latest attacked cell
 let latestAttackedCell = {
   cellValue: null,
   hitCoor: null,
@@ -78,7 +78,10 @@ function attackRandom(enemyBoard) {
 
 // Helper function to attack previous or next cells of an already hit ship
 function attackPrevNext(enemyBoard, hitCoor) {
+  // Mark the current coordinates as attacked
   computerPlayer.attackedCoords.push(hitCoor);
+
+  // Perform the attack on the enemy board
   const cellValue = computerPlayer.attack(enemyBoard, hitCoor);
   return { hitCoor, cellValue };
 }
@@ -86,9 +89,9 @@ function attackPrevNext(enemyBoard, hitCoor) {
 // Function for computer's play
 computerPlayer.play = function play(enemyBoard) {
   if (
-    latestAttackedCell.cellValue === null ||
-    latestAttackedCell.cellValue === "0" ||
-    shipCellsCoords.length === 0
+    latestAttackedCell.cellValue === null || // If at the beginning of the game
+    latestAttackedCell.cellValue === "0" || // If the previously hit cell was empty
+    shipCellsCoords.length === 0 // If the prev cell was not empty but all adjacent cells are hit
   ) {
     latestAttackedCell = attackRandom(enemyBoard);
     // This mean a ship got hit
@@ -114,42 +117,14 @@ computerPlayer.play = function play(enemyBoard) {
     }
     return latestAttackedCell;
   }
+
+  // This means there are adjacent cells to hit
   if (shipCellsCoords.length !== 0) {
     latestAttackedCell = attackPrevNext(enemyBoard, shipCellsCoords[0]);
     shipCellsCoords.shift();
   }
+
   return latestAttackedCell;
 };
 
 export { humanPlayer, computerPlayer };
-
-// Pseuodocode
-/* 
-let latestAttackedCell;
-let shipCellsCoords;
-
-function attackRandom() {}
-function attackPrevNext() {}
-
-computerPlayer.play = function play(enemyBoard) {
-  If (latestAttackedCell === "0") { 
-    latestAttackedCell = attackRandom()
-    If ( latestAttackedCell !== "0") { 
-      // Store references to prev and next cells 
-      Update shipCellsCoords
-    }
-    return latestAttackedCell
-  }
-  
-  if ( shipCellsCoords.length !== 0) {
-    // Keep attacking shipCellsCoords until store Arr is empty
-    attackPrevNext(shipCellsCoords[0])
-    shipCellsCoords.shift()
-    if (shipCellsCoords.length === 0) {
-      // If store Arr is empty, update latestAttackedCell to "0"
-      latestAttackedCell = "0";
-    }
-    return ?
-  }
-} 
-*/
