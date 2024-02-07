@@ -90,7 +90,7 @@ function attackPrevNext(enemyBoard, hitCoor) {
 computerPlayer.play = function play(enemyBoard) {
   if (
     latestAttackedCell.cellValue === null || // If at the beginning of the game
-    latestAttackedCell.cellValue === "0" || // If the previously hit cell was empty
+    (latestAttackedCell.cellValue === "0" && shipCellsCoords.length === 0) || // If the previously hit cell was empty
     shipCellsCoords.length === 0 // If the prev cell was not empty but all adjacent cells are hit
   ) {
     latestAttackedCell = attackRandom(enemyBoard);
@@ -113,6 +113,33 @@ computerPlayer.play = function play(enemyBoard) {
       ) {
         columnPrev -= 1;
         shipCellsCoords.push({ row, column: columnPrev });
+      }
+
+      // Find the minimum and maximum column values
+      let minColumn = column;
+      let maxColumn = column;
+
+      shipCellsCoords.forEach((obj) => {
+        if (obj.column < minColumn) {
+          minColumn = obj.column;
+        }
+        if (obj.column > maxColumn) {
+          maxColumn = obj.column;
+        }
+      });
+
+      if (
+        enemyBoard.board[row][minColumn - 1] &&
+        enemyBoard.board[row][minColumn - 1] === "0"
+      ) {
+        shipCellsCoords.push({ row, column: minColumn - 1 });
+      }
+
+      if (
+        enemyBoard.board[row][maxColumn + 1] &&
+        enemyBoard.board[row][maxColumn + 1] === "0"
+      ) {
+        shipCellsCoords.push({ row, column: maxColumn + 1 });
       }
     }
     return latestAttackedCell;
