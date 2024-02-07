@@ -58,6 +58,9 @@ function clickToPlaceShip() {
   const cell = document.querySelector(
     `.ship-placer .game-board .hovered-${curShipName}`,
   );
+
+  if (!cell) return;
+
   const data = {
     ship: shipsNotYetPlaced[0],
     coor: cell.getAttribute("data-coor").split(""),
