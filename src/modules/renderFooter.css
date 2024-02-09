@@ -1,0 +1,9 @@
+.footer-container {
+  display: flex;
+  align-items: center;
+}
+
+.footer-container div:first-child {
+  font-size: 2rem;
+  border-right: 1px solid black;
+}

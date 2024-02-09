@@ -4,8 +4,16 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Megapunch";
+  src: url("./assets/Megapunch-regular.ttf") format("truetype");
+}
+
 h1 {
   display: flex;
-  font-size: 5rem;
   justify-content: center;
+
+  font-family: "Megapunch";
+  letter-spacing: 3px;
+  font-size: 6rem;
 }
