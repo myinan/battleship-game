@@ -1,0 +1,25 @@
+.display-ships {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  margin-top: 27px;
+  background-color: #fef3c7;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.display-ships > div {
+  display: flex;
+}
+
+.cell-status {
+  height: 10px;
+  width: 10px;
+  background-color: #7dd3fc;
+  border: 0.5px solid black;
+}
+
+.red-bg {
+  background-color: #fca5a5;
+}
