@@ -29,6 +29,7 @@ gameBoards.forEach((gameBoard) => {
 let canRegisterClick = true;
 function emitHumanAttackCoor(e) {
   if (canRegisterClick) {
+    if (!e.target.getAttribute("data-coor")) return;
     const coor = e.target.getAttribute("data-coor").split("");
     events.emit("humanClicked", { coor, eventData: e });
 
