@@ -4,6 +4,23 @@
   gap: 20px;
 }
 
+.player-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player-container p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.border {
+  width: 5px;
+  height: auto;
+  background-color: black;
+}
+
 .game-board {
   display: grid;
   grid-template-columns: repeat(10, var(--cell-size, 40px));
