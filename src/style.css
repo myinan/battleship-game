@@ -9,6 +9,13 @@
   src: url("./assets/Megapunch-regular.ttf") format("truetype");
 }
 
+.header-main-footer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 h1 {
   display: flex;
   justify-content: center;
