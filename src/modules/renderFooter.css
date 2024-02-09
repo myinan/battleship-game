@@ -5,6 +5,7 @@
   padding: 10px;
   gap: 20px;
   background-color: var(--footer-bg);
+  box-shadow: 0px -6px 16px 3px rgba(0, 0, 0, 0.54);
 }
 
 .footer-container .footer-text {
