@@ -48,13 +48,13 @@ function renderCell(cellValue, target) {
   // if (cellValue === "X") { Do nothing }
 
   if (cellValue === "0") {
-    targetCell.style.backgroundColor = "blue";
+    targetCell.style.backgroundColor = "#06b6d4";
     targetCell.innerText = "X";
   }
 
   // This means a ship got hit
   if (cellValue !== "X" && cellValue !== "0") {
-    targetCell.style.backgroundColor = "red";
+    targetCell.style.backgroundColor = "#ef4444";
     targetCell.innerText = "X";
   }
 }

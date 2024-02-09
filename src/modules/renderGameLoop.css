@@ -14,17 +14,18 @@
 .cell {
   width: var(--cell-size, 40px);
   height: var(--cell-size, 40px);
+  background-color: var(--cell-bg);
   border: 1px solid #000;
-  background-color: #add8e6; /* Light Blue */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8em;
+  font-weight: bold;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
 #computer-player-container .cell:hover {
-  background-color: green;
+  background-color: var(--cell-hover-bg);
 }
 
 .winner-announcer-wrapper {
@@ -37,11 +38,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  background-color: var(--announce-winner-bg);
+  opacity: 0.8;
 }
 
 .winner-announcer {
   z-index: 4;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  background-color: var(--main-bg);
+  border-radius: 5px;
+}
+
+.winner-announcer p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.winner-announcer button {
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: fit-content;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--hovered-ship-bg);
+}
+
+.winner-announcer button:hover {
+  background-color: var(--cell-bg);
+  cursor: pointer;
 }

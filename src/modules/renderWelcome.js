@@ -103,7 +103,7 @@ function renderOnBoard(data, reference) {
   const cellsArr = getReferencesToCells(startCell, curShipLength);
   cellsArr.forEach((cell) => {
     const cellRef = cell;
-    cellRef.style.backgroundColor = "green";
+    cellRef.style.backgroundColor = "#65a30d";
   });
 }
 

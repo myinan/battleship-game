@@ -2,6 +2,17 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
+  --main-bg: #fafafa;
+  --ship-placer-bg: white;
+  --hovered-ship-bg: #6b7280;
+
+  --cell-bg: #bfdbfe;
+  --cell-hover-bg: #65a30d;
+
+  --footer-bg: #fde68a;
+
+  --announce-winner-bg: gray;
 }
 
 @font-face {
@@ -14,6 +25,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--main-bg);
 }
 
 h1 {

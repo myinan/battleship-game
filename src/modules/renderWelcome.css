@@ -23,7 +23,7 @@
 
 .ship-placer {
   height: max(40%, 500px);
-  background-color: white;
+  background-color: var(--ship-placer-bg);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -32,7 +32,17 @@
   padding: 1vw 2vw;
 }
 
+.ship-placer h2 {
+  font-size: 1.8rem;
+}
+
+.ship-placer p {
+  font-size: 1.3rem;
+}
+
 .ship-placer p i {
+  font-size: 1.5rem;
+  font-weight: bold;
   text-decoration: underline;
 }
 
@@ -47,35 +57,35 @@
 
 .hovered-carrier {
   position: relative;
-  background-color: black;
+  background-color: var(--hovered-ship-bg);
   pointer-events: none;
   width: 150px;
 }
 
 .hovered-battleship {
   position: relative;
-  background-color: black;
+  background-color: var(--hovered-ship-bg);
   pointer-events: none;
   width: 120px;
 }
 
 .hovered-destroyer {
   position: relative;
-  background-color: black;
+  background-color: var(--hovered-ship-bg);
   pointer-events: none;
   width: 90px;
 }
 
 .hovered-submarine {
   position: relative;
-  background-color: black;
+  background-color: var(--hovered-ship-bg);
   pointer-events: none;
   width: 90px;
 }
 
 .hovered-patrolBoat {
   position: relative;
-  background-color: black;
+  background-color: var(--hovered-ship-bg);
   pointer-events: none;
   width: 60px;
 }
