@@ -29,7 +29,7 @@ test("receive attack on gameboard correctly", () => {
   expect(gameBoard.board[7][4]).toEqual("X");
 
   // Not all ships are sunk
-  expect(gameBoard.receiveAttack({ row: 7, column: 5 })).toBe(false);
+  expect(gameBoard.receiveAttack({ row: 7, column: 5 })).toBe("p");
   // Patrol boat is sunk
   expect(gameBoard.ships.patrolBoat.isSunk()).toBe(true);
 

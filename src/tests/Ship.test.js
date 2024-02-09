@@ -6,7 +6,7 @@ test("ship gets hit", () => {
 });
 
 test("ship gets sunk", () => {
-  const newShip = new Ship(3);
+  const newShip = new Ship("newShip", 3);
   newShip.hit();
   newShip.hit();
   newShip.hit();
